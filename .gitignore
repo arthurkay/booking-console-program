@@ -1,2 +1,4 @@
-.vscode
+.vscode/
 app
+*.0
+a.out
