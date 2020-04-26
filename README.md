@@ -18,3 +18,6 @@ class menu {
         const int maxDraft = 5;
         const int lengthMarina = 150;
 ```
+
+>UPDATE:
+  The program has been updated to ask user input to progress.

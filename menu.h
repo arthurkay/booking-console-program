@@ -9,8 +9,15 @@ class menu {
         const int maxLength = 15;
         const int maxDraft = 5;
         const int lengthMarina = 150;
-        string boatType[3] = {"narrow", "sailing", "motor"};
-    
+        int boatLength;
+        int boatDraft;
+        int boatType;
+        string b_owner;
+        string b_name;
+        void getInfo();
+        void selectBoat(int option);
+        void saveData();
+
     public:
         void menuOptions();
         void newBooking();
@@ -19,6 +26,9 @@ class menu {
         void exitProgram();
         void unknown();
         void selected(int option);
+        bool isAvailable(int length, int draft);
+        int amount(int length, int duration);
+        void proceedOrExit(char option);
             
 };
 #endif
