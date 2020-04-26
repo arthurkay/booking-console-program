@@ -117,7 +117,7 @@ void menu::proceedOrExit(char option) {
 }
 
 /**
- * Ask for addtional information 
+ * Ask for addtional information  from user
  * @return void
  * */
 void menu::getInfo() {
@@ -160,10 +160,6 @@ void menu::selectBoat(int option) {
     }
 }
 
-/**
- * Temporary store data in a struct
- * @return void
- * */ 
 void menu::saveData() {
     // Instantiate the storage class
     storage store;

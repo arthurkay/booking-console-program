@@ -3,15 +3,10 @@
 
 using namespace std;
 
-/**
- * create a new record from record instance
- * 
- * @param string ownerName
- * @param string boatName
- * @param int boatLength
- * @param int boat
- * @return void
- * */
+storage::storage() {
+
+}
+
 void storage::insert(string ownerName,
             string boatName,
             int boatLength,
@@ -39,10 +34,6 @@ void storage::insert(string ownerName,
     }
 }
 
-/**
- * Show all stored data
- * @return void
- * */
 void storage::display() {
     struct userRecord* ptr;
 
