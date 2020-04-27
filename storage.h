@@ -23,7 +23,7 @@ class storage {
             int boatLength;
             // Index for the boattype array
             int boat;
-            userRecord* next;
+            struct userRecord* next;
         };
 
         /**
