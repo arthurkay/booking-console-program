@@ -53,6 +53,29 @@ class storage {
         * @return void
         * */
         void display();
+/**
+ * Read data saved to file
+ * @return void
+ * */
+
+        /**
+         * Write linked list data to file
+         * @param string ownerName
+         * @param string boatName
+         * @param int boatLength
+         * @param int boat
+         * @return void
+         * */
+        void writeData(string ownerName,
+                        string boatName,
+                        int boatLength,
+                        int boat);
+
+        /**
+        * Read data saved to file
+        * @return void
+        * */
+        void readFile();
 
         // Linked list instance variable
         struct userRecord* head = NULL;
@@ -62,3 +85,8 @@ class storage {
 
 };
 #endif
+
+/**
+ * Read data saved to file
+ * @return void
+ * */

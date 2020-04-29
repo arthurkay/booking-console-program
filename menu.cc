@@ -76,7 +76,7 @@ void menu::displayRecord() {
     storage store;
 
     // Pull data from linked list
-    store.display();
+    store.readFile();
 }
 
 void menu::exitProgram() {
