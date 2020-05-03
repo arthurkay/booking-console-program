@@ -1,33 +1,14 @@
 #ifndef _STORAGE_H_
 #define _STORAGE_H_
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class storage {
     public:
-
         /**
-         * Constructor method to initialize linked list
-         * @return void
-         * */
-        storage();
-
-        /**
-         *  Struct object for data storage
-         *
-         * */
-        struct userRecord {
-            string ownerName;
-            string boatName;
-            int boatLength;
-            // Index for the boattype array
-            int boat;
-            struct userRecord* next;
-        };
-
-        /**
-         * create a new record from record passed as parameters 
+        * create a new record from record passed as parameters 
         * @param string ownerName
         * @param string boatName
         * @param int boatLength
@@ -49,16 +30,6 @@ class storage {
         };
 
         /**
-        * Show all stored data
-        * @return void
-        * */
-        void display();
-/**
- * Read data saved to file
- * @return void
- * */
-
-        /**
          * Write linked list data to file
          * @param string ownerName
          * @param string boatName
@@ -77,16 +48,14 @@ class storage {
         * */
         void readFile();
 
-        // Linked list instance variable
-        struct userRecord* head = NULL;
+        /**
+         * Delete a specific record from file
+         * @param int num
+         * @return void
+         * */
+        void deleteRecord(int num);
 
-
-    private:
+        void updateFile(vector <string> vec);
 
 };
 #endif
-
-/**
- * Read data saved to file
- * @return void
- * */

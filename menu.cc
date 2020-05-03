@@ -2,6 +2,7 @@
 #include <string>
 #include "menu.h"
 #include "storage.h"
+#include <fstream>
 
 using namespace std;
 
@@ -46,6 +47,10 @@ void menu::newBooking() {
 
     cout << "Please enter your boat length:" << endl;
     cin >> b_length;
+
+    // Set the boat length to the boatLength variable
+    boatLength = b_length;
+
     cout << "Please enter your boat draft:" << endl;
     cin >> b_draft;
 
@@ -68,11 +73,25 @@ void menu::newBooking() {
 }
 
 void menu::deleteRecord() {
-    cout << "Selected delete record" << endl;
+    cout << "Selected record to delete" << endl;
+    ifstream infile;
+    infile.open("saved_data.txt");
+    if (infile.is_open()) {
+        int num = 1;
+        int option = 0;
+        string data;
+        while (getline(infile, data)) {
+            cout << num << ") " <<  data << endl;
+            num++;
+        }
+        cin >> option;
+        storage store;
+        store.deleteRecord(option);
+    }
 }
 
 void menu::displayRecord() {
-      // Instantiate the storage class
+    // Instantiate the storage class
     storage store;
 
     // Pull data from linked list

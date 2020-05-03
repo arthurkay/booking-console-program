@@ -15,12 +15,14 @@ void LinkedList::insert(string ownerName,
   new_node->boat = boat;
   new_node->next = head;
   head = new_node;
+
+  cout << "data saved " << endl;
 }
 
 void LinkedList::display() {
   struct userRecord* ptr;
   ptr = head;
-  while(ptr != NULL) {
+  while (ptr != NULL) {
     cout << ptr->ownerName << endl;
     ptr = ptr->next;
   }

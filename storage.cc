@@ -2,43 +2,81 @@
 #include "storage.h"
 #include <fstream>
 #include <string>
+#include <vector>
 
 using namespace std;
-
-storage::storage() {
-    // Nothing yet
-}
 
 void storage::insert(string ownerName,
     string boatName,
     int boatLength,
     int boat) {
-    struct userRecord * record =
-                 (struct userRecord*) malloc(sizeof(struct userRecord));
-                 
-        record->ownerName = ownerName;
-        record->boatName = boatName;
-        record->boatLength = boatLength;
-        record->boat = boat;
-        record->next = head;
-        head = record;
+        ifstream ifile;
+        vector <string> vData;
 
-        writeData(ownerName, boatName, boatLength, boat);
+        ifile.open("saved_data.txt");
+        if (ifile.is_open()) {
+
+            string line;
+            int lines = 0;
+
+            while (getline(ifile, line)) {
+                lines++;
+                vData.push_back(line);
+            }
+
+            if (lines >= 1) {
+                string new_entry = ownerName + " " + boatName + " "
+                                    + to_string(boatLength) + " "
+                                    + to_string(boat);
+                vData.push_back(new_entry);
+                cout << "Found " << lines << " boats(s) in file" << endl;
+                updateFile(vData);
+               
+            }
+            else {
+                // Create a new file record
+                writeData(ownerName, boatName, boatLength, boat);
+            }
+        }
+        else {
+            cout << "Unable to open \"saved_data.txt\" file" << endl;
+        }
 }
 
-void storage::display() {
-    struct userRecord* ptr;
+void storage::deleteRecord(int num) {
+    ofstream outfile;
+    ifstream infile;
 
-    ptr = head;
-    cout << "Saved details" << endl;
-    while(ptr != NULL) {
-        cout << "Hello " << ptr->ownerName
-        << ", your boat " << ptr->boatName
-        << " is " << ptr->boatLength <<
-        "m. " << "Your boat type is " << boat[ptr->boat]
-        << endl;
-        ptr = ptr->next;
+    // Vector for storing strings from file
+    vector <string> fileData;
+
+    // Open file for reading
+    infile.open("saved_data.txt");
+    if (infile.is_open()) {
+        string line;
+        // Get all lines in the file and insert them n a vector
+        while (getline(infile, line)) {
+            fileData.push_back(line);
+        }
+        // Delete the selected entry from file
+        num = num + 1;
+        fileData.erase(fileData.begin() + num);
     }
+    else {
+        cout << "Unable to open file for reading saved data" << endl;
+    }
+
+    // Open file for writing
+    outfile.open("saved_data.txt");
+    if (outfile.is_open()) {
+        for (string outFileData: fileData) {
+            outfile << outFileData << endl;
+        }
+    }
+    else {
+        cout << "Unable to open file for writing" << endl;
+    }
+
 }
 
 void storage::writeData(string ownerName,
@@ -69,6 +107,16 @@ void storage::readFile() {
         }   
     }
     else {
-        cout << "Unable to open file, or file doesnt not exist" << endl;
+        cout << "Unable to open file, or file does not exist" << endl;
     }
+}
+
+void storage::updateFile(vector <string> vec) {
+    
+    ofstream outfile;
+    outfile.open("saved_data.txt");
+    for (string stringLine: vec) {
+        outfile << stringLine << endl;
+    }
+    outfile.close();
 }
